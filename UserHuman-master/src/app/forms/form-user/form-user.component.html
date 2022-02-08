@@ -1,0 +1,64 @@
+<div class="contenedor">
+    <div class="cabecera">
+        <h1 class="titulo">Registrar Usuario</h1>
+    </div>
+    <div class="formulario">
+        <form #formularioUser="ngForm" (ngSubmit)="enviarFormulario(formularioUser)">
+            <div>
+                <p class="subtitulo">Datos de Usuario</p>
+            </div>
+            <div>
+                <label for="nombreUser">Nombre</label>
+                <input id="nombreProducto" type="text" name="nombre" [(ngModel)]="nombreFormulario" required
+                    #nombreCampo="ngModel">
+            </div>
+
+            <div>
+                <label>Apellido</label>
+                <input id="apellido" type="text" name="apellido" [(ngModel)]="apellidoFormulario" required>
+            </div>
+
+            <div>
+                <label>Direccion</label>
+                <input id="direccion" type="text" name="direccion" [(ngModel)]="direccionFormulario" required>
+            </div>
+
+            <div *ngIf="this.editable==true">
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha Nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" name="fechaNacimiento" [(ngModel)]="fechaNacimientoFormulario" (dateChange)="handleDOBChange($event)">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+           
+
+
+
+
+            <div>
+                <label>Cuenta Activa</label>
+                <mat-radio-group aria-label="Select an option" name="cuenta" [(ngModel)]="cuentaformulario">
+                    <mat-radio-button value="1">True</mat-radio-button>
+                    <mat-radio-button value="0">False</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+
+            <div>
+                <label>Num Hijos</label>
+                <input id="cuenta" type="number" name="numHijos" min="0" [(ngModel)]="numHijoFormulario" required>
+            </div>
+            <div>
+                <label for="saldoUser">Saldo</label>
+                <input id="saldoUser" type="number" name="saldo"   step="0.01" [(ngModel)]="saldoformulario" required
+                    min="0">
+            </div>
+
+
+
+            <button class="boton eliminar" type="reset">Cancelar</button>
+            <button class="boton" type="submit" [disabled]="!formularioUser.form.valid">Aceptar</button>
+        </form>
+    </div>
+</div>
